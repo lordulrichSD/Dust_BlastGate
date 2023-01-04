@@ -4,4 +4,13 @@ This project is a Dust collection system blast gate for woodworking or other dus
 
 Software is seetup to allow over the air firmware updates direct from github. BoardInfo.py and Settings.py are not part of OTA update. BoardInfo.py contains hardware pinouts and should reflect hardware revisions.  Settings.py contains device configurations, i.e. wifi, servo limits, IP for dust collector and delay time.  These settings are set per device
 
-uploaded settings.py file contains example data.
+BoardInfo files contain board specific information (i.e. pin mappings), BoardInfo must be loaded manualy at inital install and will not update OTA.  
+
+Hardware folder contains KiCAD files for board revisions.  Boards are uploaded to OSHpark.  
+
+Firmware folder contains the firmware.  Files except Settings.py are subject to OTA update.  
+
+settings.py file contains example data/startup data. File will be overwritten when configuring board for the first time.  Write this file durring intial install.
+
+OTA updated based on MicroPython OTA Updater (https://github.com/rdehuyss/micropython-ota-updater#micropython-ota-updater)
+KASA integration based on the work by 
