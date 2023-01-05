@@ -27,8 +27,10 @@ A USB connetor is provided for power only.  A jumper or switch (populate 1) allo
 
 
 
-
+(Future feature to deploy)
 OTA updated based on MicroPython OTA Updater (https://github.com/rdehuyss/micropython-ota-updater#micropython-ota-updater)
+
+
 KASA integration based on the work by GadgetReactor in the pyHS100 based on the work of The communication protocol was reverse engineered by Lubomir Stroetmann and
 Tobias Esser in 'Reverse Engineering the TP-Link HS110':
 https://www.softscheck.com/en/reverse-engineering-tp-link-hs110/.  The HS100 or python-kasa libraries were not used directly due to memory limitations of the ESP32 module so only limited functions were recreated directly.
