@@ -192,7 +192,7 @@ def run():
             if update:
                 print("Checking for Update")
                 ap.active(False)
-                
+                connectWIFI()
                                       
         
         html = webpage(SSID, password, DCIP, closedPos, openPos, delayTime)
