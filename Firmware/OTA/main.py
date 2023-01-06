@@ -21,6 +21,7 @@ DCIP= Settings.DCIP
 closedPos=Settings.closedPos
 openPos= Settings.openPos
 delayTime=Settings.delayTime
+delay2=Settings.delay2
 
 
 
@@ -62,24 +63,27 @@ def TurnOnDC():
 def TurnOffDC():
 
     SetPlug('{"system":{"set_relay_state":{"state":0}}}')
+    time.sleep(delay2)
     servoSet(closedPos)
     print("Closed")
 
 
 
 def SetPlug(cmd):
-    if WIFI.isconnected():
-        print("WIFI is connected, sending comand to Dust Collector")
-        try:
-            s = socket.socket()
-            s.settimeout(100)
-            addr = socket.getaddrinfo(DCIP, 9999)[0][-1]
-            s.connect(addr)
-            encrypted = encrypt(cmd)
-            s.send(encrypted)
-            s.close
-        except:
-            print("Error sendingn to DC")
+    if wifiEnP():
+            
+        if WIFI.isconnected():
+            print("WIFI is connected, sending comand to Dust Collector")
+            try:
+                s = socket.socket()
+                s.settimeout(100)
+                addr = socket.getaddrinfo(DCIP, 9999)[0][-1]
+                s.connect(addr)
+                encrypted = encrypt(cmd)
+                s.send(encrypted)
+                s.close
+            except:
+                print("Error sendingn to DC")
            
 def getStatus():
     try:
@@ -193,7 +197,8 @@ while (True):
         print("Manual Off")
         time.sleep(delayTime)
         if on==True:
-            TurnOffDC()
+            for i in range (0,5):
+                TurnOffDC()
         on = False
         
     elif senseEnP.value():

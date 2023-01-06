@@ -41,6 +41,10 @@ def webpage(SSID, Password, DCIP, Closed, Open, Delay):
     <input type="number" id="Delay" name="Delay" min="0" max="120"value="''')
     htmll.append(str(Delay))
     htmll.append('''"><br>
+    <label for Delay2="Delay2">Delay2 Time (Sec): </label>
+    <input type="number" id="Delay2" name="Delay2" min="0" max="30"value="''')
+    htmll.append(str(Delay2))
+    htmll.append('''"><br>
     <label for Update="Update">Check for and Download Update :</label>
     <input type="radio" id="Update" name="Update" value="1"><br>
     <label for="dont">Don't Update</label>
@@ -104,6 +108,10 @@ def savesettings(SSID, password, DCIP, closedPos, openPos, delayTime):
     
     f.write("delayTime=")
     f.write(str(delayTime))
+    f.write("\n")
+    
+    f.write("delay2=")
+    f.write(str(delay2))
     f.write("\n")
     f.close()
 
@@ -182,6 +190,8 @@ def run():
                 elif var=="Open":
                     openPos=int(i[1])
                 elif var=="Delay":
+                    delayTime=int(i[1])
+                elif var=="Delay2":
                     delayTime=int(i[1])
                 elif var=="Update":
                     if i[1]=="1":
