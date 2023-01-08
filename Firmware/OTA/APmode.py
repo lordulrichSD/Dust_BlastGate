@@ -2,7 +2,7 @@
 
 #create webpage for updating settings
 
-codeVersion="1.0"
+codeVersion="0.1"
 
 def webpage(SSID, Password, DCIP, Closed, Open, Delay):
 
@@ -115,6 +115,13 @@ def savesettings(SSID, password, DCIP, closedPos, openPos, delayTime):
     f.write("\n")
     f.close()
 
+def servoSet(pos):
+    #sets servo, to value between 0 and 100
+    posA = min(max(0, pos),100)
+    outval=int(posA*.75)+40
+    servo.duty(outval)
+    #print(outval) 
+
 def run():
 
     #get current settings()
@@ -125,6 +132,15 @@ def run():
     closedPos=Settings.closedPos
     openPos= Settings.openPos
     delayTime=Settings.delayTime
+
+    import BoardInfo
+    servoP=machine.Pin(BoardInfo.servoPin, machine.Pin.OUT)
+    servo = machine.PWM(servoP,freq=50)
+    print("closing servo")
+    servoSet(closedPos)
+
+    manOnP = machine.Pin(BoardInfo.manOnPin, machine.Pin.IN)
+    manOffP = machine.Pin(BoardInfo.manOffPin, machine.Pin.IN)
 
     #Setup network connection
     import network
@@ -152,6 +168,12 @@ def run():
     
     waiting=True
     while (waiting):
+        
+        if manOnP.value():
+            servoSet(openPos)
+        elif manOffP.value():
+            servoSet(closedPos)
+        
         conn, addr = s.accept()
         print('Got a connection from %s' % str(addr))
         request = conn.recv(1024)
