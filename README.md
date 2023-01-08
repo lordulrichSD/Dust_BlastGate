@@ -28,7 +28,7 @@ A USB connetor is provided for power only.  A jumper or switch (populate 1) allo
 
 
 (Future feature to deploy)
-OTA updated based on MicroPython OTA Updater (https://github.com/rdehuyss/micropython-ota-updater#micropython-ota-updater)
+OTA updated based on ugit (https://github.com/turfptax/ugit)
 
 
 KASA integration based on the work by GadgetReactor in the pyHS100 based on the work of The communication protocol was reverse engineered by Lubomir Stroetmann and
