@@ -29,7 +29,7 @@ A USB connetor is provided for power only.  A jumper or switch (populate 1) allo
 
 (Future feature to deploy)
 OTA updated based on ugit (https://github.com/turfptax/ugit)
-
+https://github.com/turfptax/ugit/blob/f6872930eea33ae5fb45ea48af146518e4737e93/ugit.py
 
 KASA integration based on the work by GadgetReactor in the pyHS100 based on the work of The communication protocol was reverse engineered by Lubomir Stroetmann and
 Tobias Esser in 'Reverse Engineering the TP-Link HS110':

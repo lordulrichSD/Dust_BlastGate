@@ -63,6 +63,9 @@ def TurnOnDC():
 def TurnOffDC():
 
     SetPlug('{"system":{"set_relay_state":{"state":0}}}')
+    for x in range(0,20):   
+        if getStatus():
+            SetPlug('{"system":{"set_relay_state":{"state":0}}}')    
     time.sleep(delay2)
     servoSet(closedPos)
     print("Closed")
@@ -195,8 +198,8 @@ while (True):
 
     elif manOffP.value():
         print("Manual Off")
-        time.sleep(delayTime)
         if on==True:
+            time.sleep(delayTime)
             for i in range (0,5):
                 TurnOffDC()
         on = False
@@ -212,9 +215,9 @@ while (True):
             on = True
         else:
             print("Auto Off")
-            senseStatusP.value(1)
-            time.sleep(delayTime)
+            senseStatusP.value(0)
             if on==True:
+                time.sleep(delayTime)
                 TurnOffDC()
             on = False           
     else :
