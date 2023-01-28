@@ -60,26 +60,6 @@ def webpage(SSID, Password, DCIP, Closed, Open, Delay):
 #     print(html)
     return html
 
-def connectWIFI():
-    WIFI.active(True)
-    for i in range(0,150):
-        print(WIFI.isconnected())
-        if WIFI.isconnected():
-            print("WIFI is connected")
-            break
-        else:
-            print("Trying to connect " + str(i))
-            try:
-                WIFI.connect(SSID, password)
-            except:
-                if i % 20 == 0:
-                    WIFI.active(False)
-                    time.sleep_ms(10)
-                    WIFI.active(True)
-            for x in range(0,5):
-                time.sleep(1)
-                if WIFI.isconnected():
-                    break        
 
 
 def savesettings(SSID, password, DCIP, closedPos, openPos, delayTime):
@@ -115,12 +95,6 @@ def savesettings(SSID, password, DCIP, closedPos, openPos, delayTime):
     f.write("\n")
     f.close()
 
-def servoSet(pos):
-    #sets servo, to value between 0 and 100
-    posA = min(max(0, pos),100)
-    outval=int(posA*.75)+40
-    servo.duty(outval)
-    #print(outval) 
 
 def run():
 
