@@ -1,0 +1,9 @@
+Install micropython on the board
+
+
+Load the folloing onto the board
+	APmode.py
+	boot.py
+	main.py
+	Settings.py- you may want to modify this file to inclue you SSID, password and other inital settings
+	BoardInfo.py  - Use file aproprae for version of hardware located in BoardInfo directory
