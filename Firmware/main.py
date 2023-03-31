@@ -94,6 +94,7 @@ while (True):
         #Manual On
         print("Manual On")
         #if on==False:
+        
         TurnOnDC()          
         on = True
 
@@ -123,5 +124,10 @@ while (True):
             on = False           
 
     gc.collect()
+    now=time.localtime()
+    if now[3]==0:
+        if time.time()>3600
+            TurnOffDC()
+            machine.rest()
     time.sleep_ms(10)
     

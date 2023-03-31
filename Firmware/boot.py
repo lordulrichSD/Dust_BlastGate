@@ -34,12 +34,13 @@ def TurnOnDC():
 
 def TurnOffDC():
     if wifiEnP():
-        SetPlug('{"system":{"set_relay_state":{"state":0}}}')
-        for x in range(0,20):   
-            if getStatus():
-                SetPlug('{"system":{"set_relay_state":{"state":0}}}')
-                time.sleep_ms(10)
-        time.sleep(delay2)
+        if getStatus() == False:            
+            SetPlug('{"system":{"set_relay_state":{"state":0}}}')
+            for x in range(0,20):   
+                if getStatus():
+                    SetPlug('{"system":{"set_relay_state":{"state":0}}}')
+                    time.sleep_ms(10)
+            time.sleep(delay2)
     servoSet(closedPos)
     print("Closed")
 
@@ -80,7 +81,7 @@ def getStatus():
     #         print(stat[1])
             if stat[0] == '"relay_state"':
     #             print(stat[0])
-    #             print(stat[1])
+    #             print(stat[1])              
                 return stat[1]
     except:
         print("Error getting Status")
