@@ -33,21 +33,20 @@ def TurnOnDC():
 
 
 def TurnOffDC():
-
-    SetPlug('{"system":{"set_relay_state":{"state":0}}}')
-    for x in range(0,20):   
-        if getStatus():
-            SetPlug('{"system":{"set_relay_state":{"state":0}}}')
-            time.sleep_ms(10)
-    time.sleep(delay2)
+    if wifiEnP():
+        SetPlug('{"system":{"set_relay_state":{"state":0}}}')
+        for x in range(0,20):   
+            if getStatus():
+                SetPlug('{"system":{"set_relay_state":{"state":0}}}')
+                time.sleep_ms(10)
+        time.sleep(delay2)
     servoSet(closedPos)
     print("Closed")
 
 
 
 def SetPlug(cmd):
-    if wifiEnP():
-            
+    if wifiEnP():        
         if WIFI.isconnected():
             print("WIFI is connected, sending comand to Dust Collector")
             try:

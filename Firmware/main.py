@@ -8,11 +8,14 @@ except:
 import network
 import time
 from struct import pack
+import gc
 
 #BoardInfo.py contains hardware specific information (i.e. pinouts, constant per hardware revision but may change with upddated hardware
 import BoardInfo
 #Settings.py containd device specific informaton (i.e. wifi configuration, open and closed positions and delay time)
 import Settings
+
+gc.enable()
 
 #define Variables - grab data from Settings.py configuration file
 SSID = Settings.SSID
@@ -98,9 +101,7 @@ while (True):
         print("Manual Off")
         if on==True:
             time.sleep(delayTime)
-            for i in range (0,5):
-                if getStatus():
-                    TurnOffDC()
+            TurnOffDC()
                 
         on = False
         
@@ -120,6 +121,7 @@ while (True):
                 time.sleep(delayTime)
                 TurnOffDC()
             on = False           
-    else :
-        on = False
+
+    gc.collect()
     time.sleep_ms(10)
+    
